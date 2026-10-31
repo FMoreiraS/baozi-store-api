@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Column(name = "product_id", nullable = false)

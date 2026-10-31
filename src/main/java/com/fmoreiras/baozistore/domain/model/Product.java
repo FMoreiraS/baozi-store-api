@@ -11,15 +11,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 public class Product {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     BigDecimal price;
-
-    public Product(String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
-    }
 }
