@@ -1,0 +1,16 @@
+package com.fmoreiras.baozistore.controller.request;
+
+import com.fmoreiras.baozistore.domain.model.Customer;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
+public record CustomerRequest(String name, Optional<LocalDate> customerSince) {
+    public static Customer toDomain(CustomerRequest request) {
+        return new Customer(
+                request.name(),
+                request.customerSince().orElse(LocalDate.now())
+        );
+    }
+
+}

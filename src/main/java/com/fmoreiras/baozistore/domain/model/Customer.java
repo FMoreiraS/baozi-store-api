@@ -1,9 +1,11 @@
-package com.fmoreiras.baozistore.model;
+package com.fmoreiras.baozistore.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,5 +16,12 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    String name;
+    private String name;
+    @Column(nullable = false)
+    private LocalDate customerSince;
+
+    public Customer(String name, LocalDate customerSince) {
+        this.name = name;
+        this.customerSince = customerSince;
+    }
 }
