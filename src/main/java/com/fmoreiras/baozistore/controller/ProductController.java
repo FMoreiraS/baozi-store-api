@@ -1,59 +1,44 @@
 package com.fmoreiras.baozistore.controller;
 
-import com.fmoreiras.baozistore.model.Product;
-import com.fmoreiras.baozistore.service.ProductService;
+import com.fmoreiras.baozistore.controller.request.ProductRequest;
+import com.fmoreiras.baozistore.controller.response.ProductResponse;
+import com.fmoreiras.baozistore.domain.model.Product;
+import com.fmoreiras.baozistore.domain.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-    public ProductService service;
+    private final ProductRepository repository;
+
+    public ProductController(ProductRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse create(@RequestBody ProductRequest request) {
-        Product saved = service.save(ProductRequest.toDomain(request));
+        Product saved = repository.save(ProductRequest.toDomain(request));
         return ProductResponse.from(saved);
     }
 
     @GetMapping
     public List<ProductResponse> readAll() {
-        return service.getAll().stream().map(ProductResponse::from).toList();
+        return repository.findAll().stream().map(ProductResponse::from).toList();
     }
 
     @GetMapping("/{id}")
-    public Optional<Product> readOne(@PathVariable Long id) {
-        return service.getById(id);
+    public Optional<ProductResponse> readOne(@PathVariable Long id) {
+        return repository.findById(id).map(ProductResponse::from);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        service.delete(id);
-    }
-
-
-    public record ProductRequest(String name, double price) {
-        public static Product toDomain(ProductRequest request) {
-            return new Product(
-                    request.name(),
-                    BigDecimal.valueOf(request.price()
-                    )
-            );
-        }
-    }
-    public record ProductResponse(String id, String name, double price) {
-        static ProductResponse from(Product product) {
-            return new ProductResponse(
-                    product.getId().toString(),
-                    product.getName(),
-                    product.getPrice().doubleValue()
-            );
-        }
+        repository.delete(id);
     }
 }

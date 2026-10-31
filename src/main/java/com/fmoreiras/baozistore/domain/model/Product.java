@@ -1,4 +1,4 @@
-package com.fmoreiras.baozistore.model;
+package com.fmoreiras.baozistore.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Entity
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +18,10 @@ public class Product {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    BigDecimal price;
+    private BigDecimal price;
+
+    public Product(String name, BigDecimal price) {
+        this.name = name;
+        this.price = price;
+    }
 }

@@ -1,9 +1,8 @@
-package com.fmoreiras.baozistore.repository;
+package com.fmoreiras.baozistore.domain.repository;
 
-import com.fmoreiras.baozistore.model.Product;
+import com.fmoreiras.baozistore.domain.model.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
