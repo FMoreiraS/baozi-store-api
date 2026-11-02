@@ -1,4 +1,4 @@
-package com.fmoreiras.baozistore.model;
+package com.fmoreiras.baozistore.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,9 +12,14 @@ import lombok.NoArgsConstructor;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column(name = "product_id", nullable = false)
-    Long productId;
+    private Long productId;
     @Column(name = "customer_id", nullable = false)
-    Long customerId;
+    private Long customerId;
+
+    public Order(Long productId, Long customerId) {
+        this.productId = productId;
+        this.customerId = customerId;
+    }
 }
