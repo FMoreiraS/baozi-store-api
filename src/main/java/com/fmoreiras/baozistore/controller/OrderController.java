@@ -39,7 +39,7 @@ public class OrderController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        repository.delete(id);
+        repository.deleteById(id);
     }
 
 }
