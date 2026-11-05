@@ -12,5 +12,5 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     Order save(Order order);
     List<Order> findAll();
     Optional<Order> findById(Long id);
-    void delete(Long id);
+    void deleteById(Long id);
 }

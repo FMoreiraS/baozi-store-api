@@ -12,5 +12,5 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     Customer save(Customer customer);
     List<Customer> findAll();
     Optional<Customer> findById(Long id);
-    void delete(Long id);
+    void deleteById(Long id);
 }
