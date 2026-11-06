@@ -4,6 +4,7 @@ import java.util.Optional;
 
 public record OrderUpdateRequest(
         Optional<Long> productId,
-        Optional<Long> customerId
+        Optional<Long> customerId,
+        Optional<Integer> quantity
 ) {
 }

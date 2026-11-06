@@ -31,7 +31,8 @@ POST http://localhost:8080/orders
 
 {
     "productId":"",
-    "customerId":""
+    "customerId":"",
+    "quantity":
 }
 
 ### DELETE
