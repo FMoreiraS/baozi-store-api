@@ -1,6 +1,7 @@
 package com.fmoreiras.baozistore.controller;
 
-import com.fmoreiras.baozistore.controller.request.OrderRequest;
+import com.fmoreiras.baozistore.controller.request.OrderCreationRequest;
+import com.fmoreiras.baozistore.controller.request.OrderUpdateRequest;
 import com.fmoreiras.baozistore.controller.response.OrderResponse;
 import com.fmoreiras.baozistore.domain.model.Order;
 import com.fmoreiras.baozistore.domain.repository.OrderRepository;
@@ -21,8 +22,8 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderResponse create(@RequestBody OrderRequest request) {
-        Order saved = repository.save(OrderRequest.toDomain(request));
+    public OrderResponse create(@RequestBody OrderCreationRequest request) {
+        Order saved = repository.save(OrderCreationRequest.toDomain(request));
         return OrderResponse.from(saved);
     }
 
@@ -34,6 +35,14 @@ public class OrderController {
     @GetMapping("/{id}")
     public Optional<OrderResponse> readOne(@PathVariable Long id) {
         return repository.findById(id).map(OrderResponse::from);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OrderResponse update(@PathVariable Long id, OrderUpdateRequest request) {
+        Order toUpdate = repository.findById(id).get();
+        Order updated = repository.save(toUpdate.update(request));
+        return OrderResponse.from(updated);
     }
 
     @DeleteMapping("/{id}")
