@@ -11,7 +11,7 @@ GET http://localhost:8080/customers{id}
 ###
 GET http://localhost:8080/orders{id}
 
-### POST
+### POST or PUT
 POST http://localhost:8080/products
 
 {
@@ -30,19 +30,19 @@ POST http://localhost:8080/customers
 POST http://localhost:8080/orders
 
 {
-    "productId":"",
-    "customerId":"",
+    "productId":,
+    "customerId":,
     "quantity":
 }
 
 ### DELETE
 
-DELETE http://localhost:8080/products{id}
+DELETE http://localhost:8080/products/{id}
 
 ###
-DELETE http://localhost:8080/customers{id}
+DELETE http://localhost:8080/customers/{id}
 
 ###
-DELETE http://localhost:8080/orders{id}
+DELETE http://localhost:8080/orders/{id}
 
 ###
