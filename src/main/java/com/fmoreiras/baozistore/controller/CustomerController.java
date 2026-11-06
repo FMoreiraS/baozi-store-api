@@ -40,7 +40,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerResponse update(@PathVariable Long id, CustomerUpdateRequest request) {
+    public CustomerResponse update(@PathVariable Long id, @RequestBody CustomerUpdateRequest request) {
         Customer toUpdate = repository.findById(id).get();
         Customer updated = repository.save(toUpdate.update(request));
         return CustomerResponse.from(updated);

@@ -39,7 +39,7 @@ public class OrderController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public OrderResponse update(@PathVariable Long id, OrderUpdateRequest request) {
+    public OrderResponse update(@PathVariable Long id, @RequestBody OrderUpdateRequest request) {
         Order toUpdate = repository.findById(id).get();
         Order updated = repository.save(toUpdate.update(request));
         return OrderResponse.from(updated);
