@@ -21,8 +21,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest:4.1.2'
-//    implementation 'org.postgresql:postgresql' FOR TESTS
+//    implementation 'org.springframework.boot:spring-boot-starter-data-rest:4.1.2'
+    implementation 'org.postgresql:postgresql' // FOR TESTS
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
